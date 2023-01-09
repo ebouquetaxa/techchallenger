@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
+
+public class ToolPermutations {
+
+    public void usePermutStrings() {
+        List<String> strings = new ArrayList<>();
+        strings.add("A");
+        strings.add("B");
+        strings.add("C");
+
+        List<List<String>> permutationsStrings = new ArrayList<>();
+
+        permutStrings(permutationsStrings, strings, 0);
+
+        for (List<String> permutationStrings : permutationsStrings) {
+            System.out.println(permutationStrings);
+        }
+        
+        // [A, B, C]
+        // [A, C, B]
+        // [B, A, C]
+        // [B, C, A]
+        // [C, B, A]
+        // [C, A, B]
+    }
+
+    public void usePermutObjects() {
+        List<Object> objects = new ArrayList<>();
+        objects.add((Object) new String("Object A"));
+        objects.add((Object) new String("Object B"));
+        objects.add((Object) new String("Object C"));
+
+        List<List<Object>> permutationsObjects = new ArrayList<>();
+
+        permutObjects(permutationsObjects, objects, 0);
+
+        for (List<Object> permutationObjects : permutationsObjects) {
+            System.out.println(permutationObjects);
+        }
+
+        // [Object A, Object B, Object C]
+        // [Object A, Object C, Object B]
+        // [Object B, Object A, Object C]
+        // [Object B, Object C, Object A]
+        // [Object C, Object B, Object A]
+        // [Object C, Object A, Object B]
+    }
+
+    public void permutStrings(List<List<String>> permutationsStrings, List<String> strings, int currentIndex) {
+        if (currentIndex == strings.size() - 1) {
+            // Perform action on current permutation here
+
+            // Or store current permutation in permutationsStrings for later use
+            permutationsStrings.add(new ArrayList<>(strings));
+
+            return;
+        }
+
+        for (int i = currentIndex; i < strings.size(); i++) {
+            Collections.swap(strings, currentIndex, i);
+            permutStrings(permutationsStrings, strings, currentIndex + 1);
+            Collections.swap(strings, currentIndex, i);
+        }
+    }
+
+    public void permutObjects(List<List<Object>> permutationsObjects, List<Object> objects, int currentIndex) {
+        if (currentIndex == objects.size() - 1) {
+            // Perform action on current permutation here
+
+            // Or store current permutation in permutationsObjects for later use
+            permutationsObjects.add(new ArrayList<>(objects));
+
+            return;
+        }
+
+        for (int i = currentIndex; i < objects.size(); i++) {
+            Collections.swap(objects, currentIndex, i);
+            permutObjects(permutationsObjects, objects, currentIndex + 1);
+            Collections.swap(objects, currentIndex, i);
+        }
+    }
+}
