@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 public class ToolPermutations {
 
@@ -12,12 +12,12 @@ public class ToolPermutations {
 
         List<List<String>> permutationsStrings = new ArrayList<>();
 
-        permutStrings(permutationsStrings, strings, 0);
+        permut(permutationsStrings, strings, 0);
 
         for (List<String> permutationStrings : permutationsStrings) {
             System.out.println(permutationStrings);
         }
-        
+
         // [A, B, C]
         // [A, C, B]
         // [B, A, C]
@@ -34,7 +34,7 @@ public class ToolPermutations {
 
         List<List<Object>> permutationsObjects = new ArrayList<>();
 
-        permutObjects(permutationsObjects, objects, 0);
+        permut(permutationsObjects, objects, 0);
 
         for (List<Object> permutationObjects : permutationsObjects) {
             System.out.println(permutationObjects);
@@ -48,24 +48,7 @@ public class ToolPermutations {
         // [Object C, Object A, Object B]
     }
 
-    public void permutStrings(List<List<String>> permutationsStrings, List<String> strings, int currentIndex) {
-        if (currentIndex == strings.size() - 1) {
-            // Perform action on current permutation here
-
-            // Or store current permutation in permutationsStrings for later use
-            permutationsStrings.add(new ArrayList<>(strings));
-
-            return;
-        }
-
-        for (int i = currentIndex; i < strings.size(); i++) {
-            Collections.swap(strings, currentIndex, i);
-            permutStrings(permutationsStrings, strings, currentIndex + 1);
-            Collections.swap(strings, currentIndex, i);
-        }
-    }
-
-    public void permutObjects(List<List<Object>> permutationsObjects, List<Object> objects, int currentIndex) {
+    public <T> void permut(List<List<T>> permutationsObjects, List<T> objects, int currentIndex) {
         if (currentIndex == objects.size() - 1) {
             // Perform action on current permutation here
 
@@ -77,7 +60,7 @@ public class ToolPermutations {
 
         for (int i = currentIndex; i < objects.size(); i++) {
             Collections.swap(objects, currentIndex, i);
-            permutObjects(permutationsObjects, objects, currentIndex + 1);
+            permut(permutationsObjects, objects, currentIndex + 1);
             Collections.swap(objects, currentIndex, i);
         }
     }
