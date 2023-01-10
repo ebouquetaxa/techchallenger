@@ -1,14 +1,14 @@
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class IsoContest {
 
     static boolean isLocal = false;
     static String LOCAL_LOG_PREFIX = ":::::";
-    static String[] lines;
-    static ArrayList<String> listLine;
-
+    static String[] arrayLine;
+    static List<String> listLine;
     static String line1;
     static String line2;
     static String line3;
@@ -20,18 +20,16 @@ public class IsoContest {
     }
 
     public static void answer() {
-        localLog("Dummy local log");
+        localLog("Line 1: \"" + line1 + "\"");
+        localLog("Line 2: \"" + line2 + "\"");
 
-        // Line 1
-        // String line1 = lines[0];
-
-        // Line 2
-        // String line2 = lines[1];
+        for (int i = 0; i < arrayLine.length; i++) {
+            localLog(arrayLine[i]);
+        }
 
         // Answer
-        log("answer");
+        log(1234);
     }
-
 
     public static void readInput(String[] argv) throws FileNotFoundException {
         // Récupération du scanner
@@ -51,7 +49,10 @@ public class IsoContest {
             listLine.add(scanner.nextLine());
         }
         scanner.close();
-        lines = listLine.toArray(new String[listLine.size()]);
+        arrayLine = listLine.toArray(new String[listLine.size()]);
+        line1 = arrayLine[0];
+        if (arrayLine.length >= 2) line2 = arrayLine[1];
+        if (arrayLine.length >= 3) line3 = arrayLine[2];
     }
 
     public static void log(Object object) {
