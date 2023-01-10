@@ -48,7 +48,7 @@ public class ToolPermutations {
         // [Object C, Object A, Object B]
     }
 
-    public <T> void permut(List<List<T>> permutationsObjects, List<T> objects, int currentIndex) {
+    public static <T> void permut(List<List<T>> permutationsObjects, List<T> objects, int currentIndex) {
         if (currentIndex == objects.size() - 1) {
             // Perform action on current permutation here
 
